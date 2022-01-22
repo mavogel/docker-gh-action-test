@@ -30,12 +30,9 @@ jobs:
           brew --version
       - name: Install and start docker
         if: matrix.os == 'macos-latest'
-        # https://github.com/docker/for-mac/issues/2359#issuecomment-943131345
         run: |
-          brew install --cask docker
-          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
-          open -a /Applications/Docker.app --args --unattended --accept-license
-          while ! /Applications/Docker.app/Contents/Resources/bin/docker info &>/dev/null; do sleep 1; done
+          brew install docker colima
+          colima start
       - name: Test docker
         run: |
           docker version
