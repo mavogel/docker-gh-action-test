@@ -40,5 +40,6 @@ jobs:
 
 ## Why
 - I wanted to run `docker` in `windows`, `macos` and `linux` in GitHub actions to have a minimal POC.
-- Currently it's working for `docker` in version `v20.10.8` for `macos` with the code from this [comment](https://github.com/docker/for-mac/issues/2359#issuecomment-943131345).
+- 2021-10-28: Currently it's working for `docker` in version `v20.10.8` for `macos` with the code from this [comment](https://github.com/docker/for-mac/issues/2359#issuecomment-943131345).
+- 2023-01-24: Docker updated the *unattended* install. See this [comment](https://github.com/docker/roadmap/issues/80#issuecomment-1092544646) for more details.
 - You may wonder why there are still scripts in the `ci-scripts` folder. The reason is: I wanted to keep them if the `Docker.app` changes its install flags, etc. in the future.

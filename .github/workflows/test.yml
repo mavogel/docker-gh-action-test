@@ -33,8 +33,11 @@ jobs:
         # https://github.com/docker/for-mac/issues/2359#issuecomment-943131345
         run: |
           brew install --cask docker
-          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
+          echo "### 1"
+          sudo /Applications/Docker.app/Contents/MacOS/install --accept-license
+          echo "### 2"
           open -a /Applications/Docker.app --args --unattended --accept-license
+          echo "### 3"
           while ! /Applications/Docker.app/Contents/Resources/bin/docker info &>/dev/null; do sleep 1; done
       - name: Test docker
         run: |
