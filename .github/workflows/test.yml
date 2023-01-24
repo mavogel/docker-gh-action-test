@@ -36,12 +36,12 @@ jobs:
           sudo /Applications/Docker.app/Contents/MacOS/install --accept-license
           echo "### 2"
           # open -a /Applications/Docker.app --args --unattended --accept-license
-          open -g -j -a /Applications/Docker.app
+          open -g -j -a /Applications/Docker.app --args --accept-license
           echo "### 3"
           docker version || echo "true"
           sleep 10
           docker version || echo "true"
-          timeout 2m bash -c 'while ! docker stats --no-stream >&/dev/null; do echo -n "." && sleep 1; done'
+          timeout 1m bash -c 'while ! docker stats --no-stream >&/dev/null; do echo -n "." && sleep 1; done'
       - name: Test docker
         run: |
           docker version
