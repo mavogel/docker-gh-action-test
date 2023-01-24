@@ -34,7 +34,10 @@ jobs:
           echo "### 2"
           open -a /Applications/Docker.app --args --unattended --accept-license
           echo "### 3"
-          while ! /Applications/Docker.app/Contents/Resources/bin/docker info &>/dev/null; do sleep 1; done
+          docker version || echo "true"
+          sleep 10
+          docker version || echo "true"
+          # while ! /Applications/Docker.app/Contents/Resources/bin/docker info &>/dev/null; do sleep 1; done
       - name: Test docker
         run: |
           docker version
