@@ -22,29 +22,28 @@ jobs:
       - name: Updating and upgrading brew
         if: matrix.os == 'macos-latest'
         run: |
-          docker info
-          exit 1
-          # testing end 
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           brew --version
           # for the 'timeout' utility
-          brew install coreutils
-          which timeout
+          # brew install coreutils
+          # which timeout
       - name: Install and start docker
         if: matrix.os == 'macos-latest'
         # https://github.com/docker/for-mac/issues/2359#issuecomment-943131345
         run: |
-          brew install --cask docker
-          echo "### 1"
-          sudo /Applications/Docker.app/Contents/MacOS/install --accept-license
-          echo "### 2"
-          # open -a /Applications/Docker.app --args --unattended --accept-license
-          open -g -j -a /Applications/Docker.app --args --accept-license
-          echo "### 3"
-          docker version || echo "true"
-          sleep 10
-          docker version || echo "true"
-          timeout 1m bash -c 'while ! docker stats --no-stream >&/dev/null; do echo -n "." && sleep 1; done'
+          brew install colima
+          docker ps
+          # brew install --cask docker
+          # echo "### 1"
+          # sudo /Applications/Docker.app/Contents/MacOS/install --accept-license
+          # echo "### 2"
+          # # open -a /Applications/Docker.app --args --unattended --accept-license
+          # open -g -j -a /Applications/Docker.app --args --accept-license
+          # echo "### 3"
+          # docker version || echo "true"
+          # sleep 10
+          # docker version || echo "true"
+          # timeout 1m bash -c 'while ! docker stats --no-stream >&/dev/null; do echo -n "." && sleep 1; done'
       - name: Test docker
         run: |
           docker version
