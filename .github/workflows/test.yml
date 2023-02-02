@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
     types: ['opened', 'synchronize']
+  schedule:
+    # Every Monday at 9AM UTC
+    - cron: "0 9 * * 1"
 
 jobs:
   info:
